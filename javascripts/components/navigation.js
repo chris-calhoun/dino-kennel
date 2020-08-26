@@ -1,4 +1,4 @@
-import { makeDinoForm, addNewDino } from './formAddDino.js';
+import { makeDinoForm, addNewDino } from './dinoForm.js';
 
 const showDinoForm = () => {
   $('#btnShowForm').on('click', () => {
