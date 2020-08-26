@@ -1,4 +1,5 @@
 import { getDinos } from '../helpers/data/dinoData.js';
+import { createDinoCards } from './dinoCard.js';
 
 const makeDinoForm = () => {
   $('#dinoForm').html(`
@@ -79,9 +80,11 @@ const addNewDino = () => {
       age: $('#inputAge').val(),
       imageUrl: $('#inputImageUrl').val(),
       type: $('#inputType').val(),
+      health: 100,
     };
     getDinos().push(dino);
     clearForm();
+    createDinoCards(getDinos());
   });
 };
 
