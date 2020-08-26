@@ -1,7 +1,7 @@
-import { makeDinoForm } from './components/formAddDino.js';
+import { showDinoForm } from './components/navigation.js';
 
 const init = () => {
-  makeDinoForm();
+  showDinoForm();
 };
 
 init();

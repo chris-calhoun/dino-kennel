@@ -1,4 +1,6 @@
-const addDinoForm = () => {
+import { getDinos } from '../helpers/data/dinoData.js';
+
+const makeDinoForm = () => {
   $('#dinoForm').html(`
     <div
     class="container py-4"
@@ -60,12 +62,35 @@ const addDinoForm = () => {
             </div>
             </div>
             <!-- Row 4 -->
-            <div class="form-row justify-content-end mr-3">
-            <button type="button" class="col-2 btn btn-primary">Submit</button>
-            </div>
+            
+            <button type="button" id="submitNewDino" class="btn btn-primary">
+            Submit
+          </button>
         </form>
     </div>
     `);
 };
 
-export { addDinoForm };
+const addNewDino = () => {
+  $('#submitNewDino').on('click', () => {
+    let dino = {
+      name: $('#inputName').val(),
+      owner: $('#inputOwner').val(),
+      age: $('#inputAge').val(),
+      imageUrl: $('#inputImageUrl').val(),
+      type: $('#inputType').val(),
+    };
+    getDinos().push(dino);
+    clearForm();
+  });
+};
+
+const clearForm = () => {
+  $('#inputName').val('');
+  $('#inputOwner').val('');
+  $('#inputAge').val('');
+  $('#inputImageUrl').val('');
+  $('#inputType').val('');
+};
+
+export { makeDinoForm, addNewDino };
