@@ -74,7 +74,9 @@ const makeDinoForm = () => {
 
 const addNewDino = () => {
   $('#submitNewDino').on('click', () => {
+    const newId = getDinos().length + 1;
     let dino = {
+      id: newId,
       name: $('#inputName').val(),
       owner: $('#inputOwner').val(),
       age: $('#inputAge').val(),
