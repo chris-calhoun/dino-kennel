@@ -1,3 +1,5 @@
+import { getDinos, getSelectedDino } from '../helpers/data/dinoData.js';
+
 const createDinoCards = dinoArray => {
   const newestDino = dinoArray[dinoArray.length - 1];
   $('#dinoKennel').append(`
@@ -29,4 +31,18 @@ const deleteDino = () => {
   });
 };
 
-export { createDinoCards, deleteDino };
+const feedDino = () => {
+  $('#dinoLocation').on('click', e => {
+    const target = parseInt(e.target.id, 10);
+    if (e.target.innerHTML === 'Feed') {
+      console.log(getSelectedDino(target).health);
+    }
+  });
+};
+
+const dinoActions = () => {
+  deleteDino();
+  feedDino();
+};
+
+export { createDinoCards, dinoActions };
