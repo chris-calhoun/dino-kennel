@@ -8,11 +8,11 @@ const createDinoCards = dinoArray => {
           </div>
           <div class = "container mb-3" style = "width: 75%">
             <div class="row d-flex justify-content-center">
-              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
-              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Feed</button>
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Adventure</button>
             </div>
             <div class="row d-flex justify-content-center">
-              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Pet</button>
               <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
             </div>
           </div>
