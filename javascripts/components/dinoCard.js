@@ -6,8 +6,16 @@ const createDinoCards = dinoArray => {
           <div class="card-body" >
             <h5 class="card-title text-center"> ${newestDino.name}</h5>
           </div>
-          <button type="button" class="btn btn-danger" id=${newestDino.id}>Delete</button>
-
+          <div class = "container mb-3" style = "width: 75%">
+            <div class="row d-flex justify-content-center">
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+              <button type="button" class="btn btn-danger m-1" id=${newestDino.id}>Delete</button>
+            </div>
+          </div>
         </div>
       `);
 };
