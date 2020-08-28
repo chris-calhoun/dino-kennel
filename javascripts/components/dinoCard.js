@@ -9,6 +9,12 @@ const createDinoCards = dinoArray => {
           <div class="card-body" >
             <h5 class="card-title text-center"> ${newestDino.name}</h5>
           </div>
+        <div class="progress mb-3" style="width:80%; margin: 0 auto;">
+          <div class="progress-bar bg-success progress-bar-striped"  role="progressbar"
+          aria-valuenow="${newestDino.health}" aria-valuemin="0" aria-valuemax="100" style="width:${newestDino.health}%">
+            ${newestDino.health}% 
+          </div>
+        </div>
           <div class = "container mb-3" style = "width: 75%">
             <div class="row d-flex justify-content-center">
               <button type="button" class="btn btn-danger m-1" id=feed-${newestDino.id}>Feed</button>
@@ -19,12 +25,7 @@ const createDinoCards = dinoArray => {
               <button type="button" class="btn btn-danger m-1" id=delete-${newestDino.id}>Delete</button>
             </div>
           </div>
-          <div class="health-box">
-            <div class="health-bar-red"></div>
-            <div class="health-bar-blue"></div>
-            <div class="health-bar"></div>
-            <div class="health-bar-text"></div>
-          </div>
+
         </div>
       `);
 };
