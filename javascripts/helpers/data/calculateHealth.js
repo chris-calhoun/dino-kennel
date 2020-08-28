@@ -18,7 +18,6 @@ const calcHealth = target => {
   } else if (getSelectedDino(idToNum).health < 0) {
     getSelectedDino(idToNum).health = 0;
   }
-  console.log('new health: ' + getSelectedDino(idToNum).health);
 };
 
 export { calcHealth };

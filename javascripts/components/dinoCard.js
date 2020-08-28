@@ -47,11 +47,11 @@ const moveDino = target => {
   const idToNum = parseInt(id, 10);
   console.log(idToNum);
   if (getSelectedDino(idToNum).health === 0) {
-    console.log('Location: graveyard');
+    $(`#dinoGraveyard`).append($(`#card-${idToNum}`));
   } else if (getSelectedDino(idToNum).health < 70) {
-    console.log('Location: hospital');
+    $(`#dinoHospital`).append($(`#card-${idToNum}`));
   } else if (getSelectedDino(idToNum).health <= 100) {
-    console.log('Location: kennel');
+    $(`#dinoKennel`).append($(`#card-${idToNum}`));
   }
 };
 
