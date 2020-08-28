@@ -4,4 +4,8 @@ const getDinos = () => {
   return dinos;
 };
 
-export { getDinos };
+const getSelectedDino = dino => {
+  return dinos[dino - 1];
+};
+
+export { getDinos, getSelectedDino };

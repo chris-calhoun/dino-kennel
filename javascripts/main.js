@@ -1,9 +1,9 @@
 import { showDinoForm } from './components/navigation.js';
-import { deleteDino } from './components/dinoCard.js';
+import { initDinoCards } from './components/dinoCard.js';
 
 const init = () => {
   showDinoForm();
-  deleteDino();
+  initDinoCards();
 };
 
 init();
