@@ -1,4 +1,5 @@
 import { calcHealth } from '../helpers/data/calculateHealth.js';
+import { getSelectedDino } from '../helpers/data/dinoData.js';
 
 const createDinoCards = dinoArray => {
   const newestDino = dinoArray[dinoArray.length - 1];
@@ -35,13 +36,23 @@ const deleteDino = () => {
 const dinoActions = () => {
   $('#dinoLocation').on('click', e => {
     const target = e.target.id;
-    // const id = target.slice(4, target.length);
-    // const idToNum = parseInt(id, 10);
-    // if (target.includes('feed')) {
-    //   calcHealth(target);
-    // }
     calcHealth(target);
+    moveDino(target);
   });
+};
+
+const moveDino = target => {
+  const arr = target.split('-');
+  const id = arr[1];
+  const idToNum = parseInt(id, 10);
+  console.log(idToNum);
+  if (getSelectedDino(idToNum).health === 0) {
+    console.log('Location: graveyard');
+  } else if (getSelectedDino(idToNum).health < 70) {
+    console.log('Location: hospital');
+  } else if (getSelectedDino(idToNum).health <= 100) {
+    console.log('Location: kennel');
+  }
 };
 
 const initDinoCards = () => {
