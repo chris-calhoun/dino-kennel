@@ -19,6 +19,12 @@ const createDinoCards = dinoArray => {
               <button type="button" class="btn btn-danger m-1" id=delete-${newestDino.id}>Delete</button>
             </div>
           </div>
+          <div class="health-box">
+            <div class="health-bar-red"></div>
+            <div class="health-bar-blue"></div>
+            <div class="health-bar"></div>
+            <div class="health-bar-text"></div>
+          </div>
         </div>
       `);
 };
@@ -45,7 +51,6 @@ const moveDino = target => {
   const arr = target.split('-');
   const id = arr[1];
   const idToNum = parseInt(id, 10);
-  console.log(idToNum);
   if (getSelectedDino(idToNum).health === 0) {
     $(`#dinoGraveyard`).append($(`#card-${idToNum}`));
   } else if (getSelectedDino(idToNum).health < 70) {
