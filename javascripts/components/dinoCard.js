@@ -11,7 +11,7 @@ const createDinoCards = dinoArray => {
           </div>
         <div id = progress-${newestDino.id} class="progress mb-3" style="width:80%; margin: 0 auto;">
           <div class="progress-bar bg-success progress-bar-striped"  role="progressbar"
-          aria-valuenow="${newestDino.health}" aria-valuemin="0" aria-valuemax="100" style="width:s${newestDino.health}%">
+          aria-valuenow=${newestDino.health} aria-valuemin="0" aria-valuemax="100" style="width:${newestDino.health}%">
             ${newestDino.health}% 
           </div>
         </div>
@@ -54,12 +54,11 @@ const dinoActions = () => {
 };
 
 const moveDino = (target, originalHealth) => {
-  console.log(originalHealth, 'originalHealth');
-
   const arr = target.split('-');
   const id = arr[1];
   const idToNum = parseInt(id, 10);
-  console.log(getSelectedDino(idToNum).health, 'newHealth');
+  // console.log(originalHealth, 'originalHealth');
+  // console.log(getSelectedDino(idToNum).health, 'newHealth');
 
   //If the dino is in the graveyard
   if (originalHealth === 0) {
@@ -67,8 +66,8 @@ const moveDino = (target, originalHealth) => {
       $(`#dinoHospital`).append($(`#card-${idToNum}`));
     }
     //If the dino is in the Kennel
-  } else if (originalHealth >= 70) {
-    if (getSelectedDino(idToNum).health < 70) {
+  } else if (originalHealth > 70) {
+    if (getSelectedDino(idToNum).health <= 70) {
       $(`#dinoHospital`).append($(`#card-${idToNum}`));
     }
     //If the dino is in the Hospital
@@ -84,9 +83,15 @@ const moveDino = (target, originalHealth) => {
 const updateHealthBar = target => {
   const arr = target.split('-');
   const id = arr[1];
-  // const idToNum = parseInt(id, 10);
+  const idToNum = parseInt(id, 10);
+  const selectedDino = getSelectedDino(idToNum);
   const updatedHealth = `
-            `;
+    <div id = progress-${selectedDino.id} class="progress mb-3" style="width:80%; margin: 0 auto;">
+      <div class="progress-bar bg-success progress-bar-striped"  role="progressbar"
+      aria-valuenow=${selectedDino.health} aria-valuemin="0" aria-valuemax="100" style="width:${selectedDino.health}%">
+        ${selectedDino.health}% 
+      </div>
+  </div>`;
   $(`#progress-${id}`).replaceWith(updatedHealth);
 };
 
