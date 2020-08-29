@@ -43,29 +43,48 @@ const deleteDino = () => {
 const dinoActions = () => {
   $('#dinoLocation').on('click', e => {
     const target = e.target.id;
+    const arr = target.split('-');
+    const id = arr[1];
+    const idToNum = parseInt(id, 10);
+    const preActionHealth = getSelectedDino(idToNum).health;
     calcHealth(target);
     updateHealthBar(target);
-    moveDino(target);
+    moveDino(target, preActionHealth);
   });
 };
 
-const moveDino = target => {
+const moveDino = (target, originalHealth) => {
+  console.log(originalHealth, 'originalHealth');
+
   const arr = target.split('-');
   const id = arr[1];
   const idToNum = parseInt(id, 10);
-  if (getSelectedDino(idToNum).health === 0) {
-    $(`#dinoGraveyard`).append($(`#card-${idToNum}`));
-  } else if (getSelectedDino(idToNum).health < 70) {
-    $(`#dinoHospital`).append($(`#card-${idToNum}`));
-  } else if (getSelectedDino(idToNum).health <= 100) {
-    $(`#dinoKennel`).append($(`#card-${idToNum}`));
+  console.log(getSelectedDino(idToNum).health, 'newHealth');
+
+  //If the dino is in the graveyard
+  if (originalHealth === 0) {
+    if (getSelectedDino(idToNum).health < 70) {
+      $(`#dinoHospital`).append($(`#card-${idToNum}`));
+    }
+    //If the dino is in the Kennel
+  } else if (originalHealth >= 70) {
+    if (getSelectedDino(idToNum).health < 70) {
+      $(`#dinoHospital`).append($(`#card-${idToNum}`));
+    }
+    //If the dino is in the Hospital
+  } else if (originalHealth <= 70 && originalHealth > 0) {
+    if (getSelectedDino(idToNum).health === 0) {
+      $(`#dinoGraveyard`).append($(`#card-${idToNum}`));
+    } else if (getSelectedDino(idToNum).health > 70) {
+      $(`#dinoKennel`).append($(`#card-${idToNum}`));
+    }
   }
 };
 
 const updateHealthBar = target => {
   const arr = target.split('-');
   const id = arr[1];
-  const idToNum = parseInt(id, 10);
+  // const idToNum = parseInt(id, 10);
   const updatedHealth = `
             `;
   $(`#progress-${id}`).replaceWith(updatedHealth);
