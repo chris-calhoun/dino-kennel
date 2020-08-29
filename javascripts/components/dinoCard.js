@@ -87,7 +87,7 @@ const healthBarColor = target => {
   }
 };
 
-const dinoActions = (action, id) => {
+const dinoActions = (action, id, dinoObject) => {
   if (action === 'feed') {
     console.log('feed');
   } else if (action === 'pet') {

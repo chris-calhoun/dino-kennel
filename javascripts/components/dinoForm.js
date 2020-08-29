@@ -90,7 +90,11 @@ const addNewDino = () => {
 
     $('button').click(e => {
       const selectedDinoArray = getSelectedDino(e);
-      dinoActions(selectedDinoArray[0], selectedDinoArray[1]);
+      dinoActions(
+        selectedDinoArray[0],
+        selectedDinoArray[1],
+        selectedDinoArray[2]
+      );
     });
   });
 };
