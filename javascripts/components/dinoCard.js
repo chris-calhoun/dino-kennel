@@ -9,9 +9,9 @@ const createDinoCards = dinoArray => {
           <div class="card-body" >
             <h5 class="card-title text-center"> ${newestDino.name}</h5>
           </div>
-        <div class="progress mb-3" style="width:80%; margin: 0 auto;">
+        <div id = progress-${newestDino.id} class="progress mb-3" style="width:80%; margin: 0 auto;">
           <div class="progress-bar bg-success progress-bar-striped"  role="progressbar"
-          aria-valuenow="${newestDino.health}" aria-valuemin="0" aria-valuemax="100" style="width:${newestDino.health}%">
+          aria-valuenow="${newestDino.health}" aria-valuemin="0" aria-valuemax="100" style="width:s${newestDino.health}%">
             ${newestDino.health}% 
           </div>
         </div>
@@ -44,6 +44,7 @@ const dinoActions = () => {
   $('#dinoLocation').on('click', e => {
     const target = e.target.id;
     calcHealth(target);
+    updateHealthBar(target);
     moveDino(target);
   });
 };
@@ -59,6 +60,15 @@ const moveDino = target => {
   } else if (getSelectedDino(idToNum).health <= 100) {
     $(`#dinoKennel`).append($(`#card-${idToNum}`));
   }
+};
+
+const updateHealthBar = target => {
+  const arr = target.split('-');
+  const id = arr[1];
+  const idToNum = parseInt(id, 10);
+  const updatedHealth = `
+            `;
+  $(`#progress-${id}`).replaceWith(updatedHealth);
 };
 
 const initDinoCards = () => {
