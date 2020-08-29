@@ -9,9 +9,9 @@ const calcHealth = (action, dinoObject) => {
 
   // Health max and min limits
   if (dinoObject.health > 100) {
-    dinoObject.health.health = 100;
+    dinoObject.health = 100;
   } else if (dinoObject.health < 0) {
-    dinoObject.health.health = 0;
+    dinoObject.health = 0;
   }
 };
 

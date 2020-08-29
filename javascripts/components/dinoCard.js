@@ -37,7 +37,7 @@ const deleteDino = id => {
 const moveDino = (selectedDino, originalHealth) => {
   //If the dino is in the graveyard
   if (originalHealth === 0) {
-    if (selectedDino.health < 70) {
+    if (selectedDino.health < 70 && selectedDino.health > 0) {
       $(`#dinoHospital`).append($(`#card-${selectedDino.id}`));
     }
     //If the dino is in the Kennel
