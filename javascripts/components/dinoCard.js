@@ -49,6 +49,7 @@ const dinoActions = () => {
     const preActionHealth = getSelectedDino(idToNum).health;
     calcHealth(target);
     updateHealthBar(target);
+    healthBarColor(target);
     moveDino(target, preActionHealth);
   });
 };
@@ -86,13 +87,34 @@ const updateHealthBar = target => {
   const idToNum = parseInt(id, 10);
   const selectedDino = getSelectedDino(idToNum);
   const updatedHealth = `
-    <div id = progress-${selectedDino.id} class="progress mb-3" style="width:80%; margin: 0 auto;">
-      <div class="progress-bar bg-success progress-bar-striped"  role="progressbar"
-      aria-valuenow=${selectedDino.health} aria-valuemin="0" aria-valuemax="100" style="width:${selectedDino.health}%">
+    <div id = progress-${
+      selectedDino.id
+    } class="progress mb-3" style="width:80%; margin: 0 auto;">
+      <div class="progress-bar bg-${healthBarColor(
+        target
+      )} progress-bar-striped"  role="progressbar"
+      aria-valuenow=${
+        selectedDino.health
+      } aria-valuemin="0" aria-valuemax="100" style="width:${
+    selectedDino.health
+  }%">
         ${selectedDino.health}% 
       </div>
   </div>`;
   $(`#progress-${id}`).replaceWith(updatedHealth);
+};
+
+const healthBarColor = target => {
+  const arr = target.split('-');
+  const id = arr[1];
+  const idToNum = parseInt(id, 10);
+  if (getSelectedDino(idToNum).health === 0) {
+    return 'danger';
+  } else if (getSelectedDino(idToNum).health <= 70) {
+    return 'warning';
+  } else if (getSelectedDino(idToNum).health <= 100) {
+    return 'success';
+  }
 };
 
 const initDinoCards = () => {
