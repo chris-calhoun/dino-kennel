@@ -34,8 +34,7 @@ const deleteDino = id => {
   $(`#card-${id}`).remove();
 };
 
-const moveDino = (target, originalHealth) => {
-  const selectedDino = getSelectedDino(target);
+const moveDino = (selectedDino, originalHealth) => {
   //If the dino is in the graveyard
   if (originalHealth === 0) {
     if (selectedDino.health < 70) {
@@ -56,14 +55,13 @@ const moveDino = (target, originalHealth) => {
   }
 };
 
-const updateHealthBar = target => {
-  const selectedDino = getSelectedDino(target);
+const updateHealthBar = selectedDino => {
   const updatedHealth = `
     <div id = progress-${
       selectedDino.id
     } class="progress mb-3" style="width:80%; margin: 0 auto;">
       <div class="progress-bar bg-${healthBarColor(
-        target
+        selectedDino
       )} progress-bar-striped"  role="progressbar"
       aria-valuenow=${
         selectedDino.health
@@ -76,8 +74,7 @@ const updateHealthBar = target => {
   $(`#progress-${selectedDino.id}`).replaceWith(updatedHealth);
 };
 
-const healthBarColor = target => {
-  const selectedDino = getSelectedDino(target);
+const healthBarColor = selectedDino => {
   if (selectedDino.health === 0) {
     return 'danger';
   } else if (selectedDino.health <= 70) {
@@ -88,25 +85,15 @@ const healthBarColor = target => {
 };
 
 const dinoActions = (action, id, dinoObject) => {
-  if (action === 'feed') {
-    console.log('feed');
-  } else if (action === 'pet') {
-    console.log('pet');
-  } else if (action === 'adventure') {
-    console.log('adventure');
+  if (action === 'feed' || action === 'adventure' || action === 'pet') {
+    const preActionHealth = dinoObject.health;
+    calcHealth(action, dinoObject);
+    updateHealthBar(dinoObject);
+    healthBarColor(dinoObject);
+    moveDino(dinoObject, preActionHealth);
   } else if (action === 'delete') {
     deleteDino(id);
   }
-
-  // $('#dinoLocation').on('click', e => {
-  //   const target = e.target.id;
-  //   const preActionHealth = getSelectedDino(target).health;
-  //   calcHealth(target);
-  //   updateHealthBar(target);
-  //   healthBarColor(target);
-  //   moveDino(target, preActionHealth);
-  //   deleteDino();
-  // });
 };
 
 export { createDinoCards, dinoActions };
