@@ -30,14 +30,8 @@ const createDinoCards = dinoArray => {
       `);
 };
 
-const deleteDino = () => {
-  $('#dinoLocation').on('click', e => {
-    const target = e.target.id;
-    const id = target.slice(6, target.length);
-    if (target.includes('delete')) {
-      $(`#card${id}`).remove();
-    }
-  });
+const deleteDino = id => {
+  $(`#card-${id}`).remove();
 };
 
 const moveDino = (target, originalHealth) => {
@@ -93,20 +87,26 @@ const healthBarColor = target => {
   }
 };
 
-const dinoActions = () => {
-  $('#dinoLocation').on('click', e => {
-    const target = e.target.id;
-    const preActionHealth = getSelectedDino(target).health;
-    calcHealth(target);
-    updateHealthBar(target);
-    healthBarColor(target);
-    moveDino(target, preActionHealth);
-  });
+const dinoActions = (action, id) => {
+  if (action === 'feed') {
+    console.log('feed');
+  } else if (action === 'pet') {
+    console.log('pet');
+  } else if (action === 'adventure') {
+    console.log('adventure');
+  } else if (action === 'delete') {
+    deleteDino(id);
+  }
+
+  // $('#dinoLocation').on('click', e => {
+  //   const target = e.target.id;
+  //   const preActionHealth = getSelectedDino(target).health;
+  //   calcHealth(target);
+  //   updateHealthBar(target);
+  //   healthBarColor(target);
+  //   moveDino(target, preActionHealth);
+  //   deleteDino();
+  // });
 };
 
-const initDinoCards = () => {
-  deleteDino();
-  dinoActions();
-};
-
-export { createDinoCards, initDinoCards };
+export { createDinoCards, dinoActions };

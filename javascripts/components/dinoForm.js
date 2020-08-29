@@ -1,5 +1,5 @@
-import { getDinos } from '../helpers/data/dinoData.js';
-import { createDinoCards } from './dinoCard.js';
+import { getDinos, getSelectedDino } from '../helpers/data/dinoData.js';
+import { createDinoCards, dinoActions } from './dinoCard.js';
 
 const makeDinoForm = () => {
   $('#dinoForm').html(`
@@ -87,6 +87,11 @@ const addNewDino = () => {
     getDinos().push(dino);
     clearForm();
     createDinoCards(getDinos());
+
+    $('button').click(e => {
+      const selectedDinoArray = getSelectedDino(e);
+      dinoActions(selectedDinoArray[0], selectedDinoArray[1]);
+    });
   });
 };
 
