@@ -1,19 +1,17 @@
-import { getSelectedDino } from './dinoData.js';
-
-const calcHealth = target => {
-  if (target.includes('feed')) {
-    getSelectedDino(target).health += 25;
-  } else if (target.includes('adventure')) {
-    getSelectedDino(target).health -= 30;
-  } else if (target.includes('pet')) {
-    getSelectedDino(target).health += 10;
+const calcHealth = (action, dinoObject) => {
+  if (action === 'feed') {
+    dinoObject.health += 25;
+  } else if (action === 'adventure') {
+    dinoObject.health -= 30;
+  } else if (action === 'pet') {
+    dinoObject.health += 10;
   }
 
   // Health max and min limits
-  if (getSelectedDino(target).health > 100) {
-    getSelectedDino(target).health = 100;
-  } else if (getSelectedDino(target).health < 0) {
-    getSelectedDino(target).health = 0;
+  if (dinoObject.health > 100) {
+    dinoObject.health = 100;
+  } else if (dinoObject.health < 0) {
+    dinoObject.health = 0;
   }
 };
 

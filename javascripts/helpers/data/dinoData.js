@@ -4,11 +4,12 @@ const getDinos = () => {
   return dinos;
 };
 
-const getSelectedDino = target => {
+const getSelectedDino = e => {
+  const target = e.target.id;
   const arr = target.split('-');
-  const id = arr[1];
-  const idToNum = parseInt(id, 10);
-  return dinos[idToNum - 1];
+  arr[1] = parseInt(arr[1], 10);
+  arr[2] = getDinos()[arr[1] - 1];
+  return arr;
 };
 
 export { getDinos, getSelectedDino };
