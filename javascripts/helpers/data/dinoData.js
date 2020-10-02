@@ -4,9 +4,10 @@ const getDinos = () => {
   return dinos;
 };
 
-const getSelectedDino = e => {
+const getSelectedDino = (e) => {
   const target = e.target.id;
   const arr = target.split('-');
+  console.log(arr);
   arr[1] = parseInt(arr[1], 10);
   arr[2] = getDinos()[arr[1] - 1];
   return arr;

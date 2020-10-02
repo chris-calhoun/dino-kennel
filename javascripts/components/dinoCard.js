@@ -1,8 +1,9 @@
 import { calcHealth } from '../helpers/data/calculateHealth.js';
 import { getSelectedDino } from '../helpers/data/dinoData.js';
 
-const createDinoCards = dinoArray => {
+const createDinoCards = (dinoArray) => {
   const newestDino = dinoArray[dinoArray.length - 1];
+  console.log(newestDino);
   $('#dinoKennel').append(`
         <div class="card m-3" id=card-${newestDino.id} style="width: 16rem; ">
           <img class="card-img-top" src=https://i.pinimg.com/originals/60/72/b9/6072b96192d18a2167afeb64371e769f.jpg alt="Card image cap">
@@ -30,7 +31,7 @@ const createDinoCards = dinoArray => {
       `);
 };
 
-const deleteDino = id => {
+const deleteDino = (id) => {
   $(`#card-${id}`).remove();
 };
 
@@ -55,7 +56,7 @@ const moveDino = (selectedDino, originalHealth) => {
   }
 };
 
-const updateHealthBar = selectedDino => {
+const updateHealthBar = (selectedDino) => {
   const updatedHealth = `
     <div id = progress-${
       selectedDino.id
@@ -74,7 +75,7 @@ const updateHealthBar = selectedDino => {
   $(`#progress-${selectedDino.id}`).replaceWith(updatedHealth);
 };
 
-const healthBarColor = selectedDino => {
+const healthBarColor = (selectedDino) => {
   if (selectedDino.health === 0) {
     return 'danger';
   } else if (selectedDino.health <= 70) {
