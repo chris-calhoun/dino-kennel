@@ -88,8 +88,9 @@ const addNewDino = () => {
     clearForm();
     createDinoCards(getDinos());
 
-    $('button').click(e => {
+    $('button').click((e) => {
       const selectedDinoArray = getSelectedDino(e);
+      console.log(selectedDinoArray);
       dinoActions(
         selectedDinoArray[0],
         selectedDinoArray[1],
